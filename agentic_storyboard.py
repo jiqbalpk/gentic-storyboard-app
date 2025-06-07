@@ -23,7 +23,7 @@ Return output in this format:
 Rewritten blurb:
 """
     response = openai.chat.completions.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo-1106",
         messages=[{"role": "user", "content": prompt}]
     )
     return response.choices[0].message.content
