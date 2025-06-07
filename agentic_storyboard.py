@@ -3,7 +3,7 @@ import streamlit as st
 import re
 import openai
 
-client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.title("🧠 Agentic Storyboard Builder")
 st.markdown("Turn your idea blurb into a data-backed storyboard, with full control over facts.")
