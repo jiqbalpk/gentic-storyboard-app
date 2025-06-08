@@ -2,7 +2,8 @@ import streamlit as st
 import re
 import openai
 
-client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# Legacy OpenAI API call
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.title("🧠 Agentic Storyboard Builder")
 st.markdown("Turn your idea blurb into a data-backed storyboard, with full control over facts.")
@@ -21,11 +22,11 @@ Return output in this format:
 ---
 Rewritten blurb:
 """
-    response = client.chat.completions.create(
-        model="gpt-4o",
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
         messages=[{"role": "user", "content": prompt}]
     )
-    return response.choices[0].message.content
+    return response.choices[0].message["content"]
 
 def fill_placeholders(rewritten_blurb, placeholder_labels):
     filled_blurb = rewritten_blurb
