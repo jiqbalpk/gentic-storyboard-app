@@ -1,9 +1,8 @@
-
 import streamlit as st
 import re
 import openai
 
-response = openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.title("🧠 Agentic Storyboard Builder")
 st.markdown("Turn your idea blurb into a data-backed storyboard, with full control over facts.")
@@ -22,8 +21,8 @@ Return output in this format:
 ---
 Rewritten blurb:
 """
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo-1106",
+    response = client.chat.completions.create(
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}]
     )
     return response.choices[0].message.content
